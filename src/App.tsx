@@ -4,7 +4,7 @@ import { Button } from "./components/Button";
 import { Tablo } from "./components/Tablo";
 
 function App() {
-  let [count, setCount] = useState(0);
+  const [count, setCount] = useState(0);
 
   const incrementClick = () => {
     let value = count;
@@ -18,9 +18,9 @@ function App() {
   return (
     <div className="App">
       <Tablo count={count} />
-      <div>
-        <Button title={"inc"} onClick={incrementClick} />
-        <Button title={"reset"} onClick={resetClick} />
+      <div className="Block">
+        <Button title={"inc"} onClick={incrementClick} className={"Btn"} />
+        <Button title={"reset"} onClick={resetClick} className={"Btn"} />
       </div>
     </div>
   );

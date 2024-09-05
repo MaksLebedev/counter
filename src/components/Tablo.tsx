@@ -6,8 +6,10 @@ type TabloPropsType = {
 
 export const Tablo = ({ count }: TabloPropsType) => {
   return (
-    <div>
+    <div className="Tablo">
       <span>{count}</span>
     </div>
   );
 };
+
+
