@@ -4,8 +4,22 @@ type PropsButtonTypes = {
   title: string;
   onClick: () => void;
   className?: string;
+  disabled?: boolean;
 };
 
-export const Button = ({ title, onClick, className }: PropsButtonTypes) => {
-  return <button className={className} onClick={onClick}>{title}</button>;
+export const Button = ({
+  title,
+  onClick,
+  className,
+  disabled,
+}: PropsButtonTypes) => {
+  return (
+    <button
+      className={className}
+      onClick={onClick}
+      disabled={disabled}
+    >
+      {title}
+    </button>
+  );
 };

@@ -6,21 +6,41 @@ import { Tablo } from "./components/Tablo";
 function App() {
   const [count, setCount] = useState(0);
 
+  const maxValue = 5;
+
   const incrementClick = () => {
     let value = count;
-    setCount((value = count + 1));
+
+    if (value < maxValue) {
+      setCount((value = count + 1));
+    } else {
+      setCount(value);
+    }
   };
 
   const resetClick = () => {
     setCount(0);
   };
 
+  const isDisabledBtnInc = count >= maxValue;
+  const isDisabledBtnReset = count === 0;
+
   return (
     <div className="App">
-      <Tablo count={count} />
+      <Tablo count={count} maxValue={maxValue} />
       <div className="Block">
-        <Button title={"inc"} onClick={incrementClick} className={"Btn"} />
-        <Button title={"reset"} onClick={resetClick} className={"Btn"} />
+        <Button
+          title={"inc"}
+          onClick={incrementClick}
+          className={"Btn"}
+          disabled={isDisabledBtnInc}
+        />
+        <Button
+          title={"reset"}
+          onClick={resetClick}
+          className={"Btn"}
+          disabled={isDisabledBtnReset}
+        />
       </div>
     </div>
   );

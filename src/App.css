@@ -1,5 +1,6 @@
 body {
   background-color: #282c34;
+  padding: 20px;
 }
 
 .App {
@@ -27,6 +28,19 @@ body {
   background-color: rgb(61, 209, 226);
 }
 
+.Tablo-Red {
+  border: 2px solid rgb(61, 209, 226);
+  border-radius: 5px;
+  font-size: 60px;
+  font-weight: bold;
+  color: red;
+  text-align: center;
+  justify-content: center;
+  margin-bottom: 20px;
+  width: 200px;
+  background-color: rgb(61, 209, 226);
+}
+
 .Block {
   border: 2px solid rgb(61, 209, 226);
   border-radius: 5px;
@@ -45,4 +59,8 @@ body {
   font-weight: bold;
   margin-right: 10px;
   cursor: pointer;
+}
+
+.Btn:disabled {
+  opacity: 0.5;
 }
