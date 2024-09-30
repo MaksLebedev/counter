@@ -4,18 +4,12 @@ body {
 }
 
 .App {
-  border: 2px solid rgb(61, 209, 226);
-  border-radius: 5px;
   display: flex;
-  flex-direction: column;
-  align-items: center;
+  gap: 50px;
   justify-content: center;
-  width: 200px;
-  margin: 0 auto;
-  padding: 20px;
 }
 
-.Tablo {
+.Screen {
   border: 2px solid rgb(61, 209, 226);
   border-radius: 5px;
   font-size: 60px;
@@ -28,7 +22,7 @@ body {
   background-color: rgb(61, 209, 226);
 }
 
-.Tablo-Red {
+.Screen-Red {
   border: 2px solid rgb(61, 209, 226);
   border-radius: 5px;
   font-size: 60px;

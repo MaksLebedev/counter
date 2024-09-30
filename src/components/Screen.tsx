@@ -5,9 +5,9 @@ type TabloPropsType = {
   maxValue: number;
 };
 
-export const Tablo = ({ count, maxValue }: TabloPropsType) => {
+export const Screen = ({ count, maxValue }: TabloPropsType) => {
   return (
-    <div className={count === maxValue ? "Tablo-Red" : "Tablo"}>
+    <div className={count === maxValue ? "Screen-Red" : "Screen"}>
       <span>{count}</span>
     </div>
   );
