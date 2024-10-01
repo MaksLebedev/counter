@@ -2,12 +2,12 @@ import React from "react";
 
 type TabloPropsType = {
   count: number;
-  maxValue: number;
+  inputValueMax: number;
 };
 
-export const Screen = ({ count, maxValue }: TabloPropsType) => {
+export const Screen = ({ count, inputValueMax }: TabloPropsType) => {
   return (
-    <div className={count === maxValue ? "Screen-Red" : "Screen"}>
+    <div className={count === inputValueMax ? "Screen-Red" : "Screen"}>
       <span>{count}</span>
     </div>
   );

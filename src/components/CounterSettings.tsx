@@ -5,6 +5,8 @@ import styled from "styled-components";
 import { Button } from "./Button";
 
 type CounterSettingsProps = {
+  maxValue: number;
+  startValue: number;
   inputValueMax: number;
   inputValueStart: number;
   onChangeInputValueMaxHandler: (e: ChangeEvent<HTMLInputElement>) => void;
@@ -13,20 +15,26 @@ type CounterSettingsProps = {
 };
 
 export const CounterSettings = ({
+  maxValue,
+  startValue,
   inputValueMax,
   inputValueStart,
 
   onChangeInputValueMaxHandler,
   onChangeinputValueStartHandler,
-  setClickHandler
+  setClickHandler,
 }: CounterSettingsProps) => {
+  const isDisabledBtnSet =
+    (inputValueStart === startValue && inputValueMax === maxValue) ||
+    inputValueStart === inputValueMax;
+
   return (
     <StyledCounterSettings>
       <StyledSettings>
         <StyledWrapper>
           <span>max value:</span>
           <input
-            style={{ width: 80 }}
+            style={{ width: 80, borderRadius: '4px', border: '2px solid rgb(61, 209, 226)', textAlign: "center"}}
             type="number"
             value={inputValueMax}
             onChange={onChangeInputValueMaxHandler}
@@ -35,7 +43,7 @@ export const CounterSettings = ({
         <StyledWrapper>
           <span>start value:</span>
           <input
-            style={{ width: 80 }}
+            style={{ width: 80, borderRadius: '4px', border: '2px solid rgb(61, 209, 226)', textAlign: "center"}}
             type="number"
             value={inputValueStart}
             onChange={onChangeinputValueStartHandler}
@@ -43,7 +51,12 @@ export const CounterSettings = ({
         </StyledWrapper>
       </StyledSettings>
       <div className="Block">
-        <Button title="set" className="Btn" onClick={setClickHandler} />
+        <Button
+          title="set"
+          className="Btn"
+          onClick={setClickHandler}
+          disabled={isDisabledBtnSet}
+        />
       </div>
     </StyledCounterSettings>
   );

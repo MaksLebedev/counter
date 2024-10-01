@@ -16,7 +16,7 @@ function App() {
   
 
   const incrementClickHandler = () => {
-    if (count < maxValue) {
+    if (count < inputValueMax) {
       setCount(count + 1);
     }
   };
@@ -39,6 +39,8 @@ function App() {
   return (
     <div className="App">
       <CounterSettings
+        maxValue={maxValue}
+        startValue={startValue}
         inputValueMax={inputValueMax}
         inputValueStart={inputValueStart}
         onChangeInputValueMaxHandler={onChangeInputValueMaxHandler}
@@ -46,8 +48,8 @@ function App() {
         setClickHandler={setClickHandler}
       />
       <Counter
-        maxValue={maxValue}
-        startValue={startValue}
+        inputValueMax={inputValueMax}
+        inputValueStart={inputValueStart}
         count={count}
         incrementClickHandler={incrementClickHandler}
         resetClickHandler={resetClickHandler}

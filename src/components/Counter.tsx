@@ -4,8 +4,8 @@ import { Screen } from "./Screen";
 import styled from "styled-components";
 
 type CounterProps = {
-  maxValue: number;
-  startValue: number;
+  inputValueMax: number;
+  inputValueStart: number;
   count: number;
 
   incrementClickHandler: () => void;
@@ -13,18 +13,18 @@ type CounterProps = {
 };
 
 export const Counter = ({
-  maxValue,
-  startValue,
+  inputValueMax,
+  inputValueStart,
   count,
   incrementClickHandler,
   resetClickHandler,
 }: CounterProps) => {
 
-  const isDisabledBtnInc = count >= maxValue;
-  const isDisabledBtnReset = count === startValue;
+  const isDisabledBtnInc = count >= inputValueMax;
+  const isDisabledBtnReset = count === inputValueStart;
   return (
     <StyledCounter>
-      <Screen count={count} maxValue={maxValue} />
+      <Screen count={count} inputValueMax={inputValueMax} />
       <div className="Block">
         <Button
           title={"inc"}
