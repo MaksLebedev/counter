@@ -5,36 +5,36 @@ import styled from "styled-components";
 
 type CounterProps = {
   maxValue: number;
-  minValue: number;
+  startValue: number;
   count: number;
 
-  incrementClick: () => void;
-  resetClick: () => void;
+  incrementClickHandler: () => void;
+  resetClickHandler: () => void;
 };
 
 export const Counter = ({
   maxValue,
-  minValue,
+  startValue,
   count,
-  incrementClick,
-  resetClick,
+  incrementClickHandler,
+  resetClickHandler,
 }: CounterProps) => {
 
   const isDisabledBtnInc = count >= maxValue;
-  const isDisabledBtnReset = count === minValue;
+  const isDisabledBtnReset = count === startValue;
   return (
     <StyledCounter>
       <Screen count={count} maxValue={maxValue} />
       <div className="Block">
         <Button
           title={"inc"}
-          onClick={incrementClick}
+          onClick={incrementClickHandler}
           className={"Btn"}
           disabled={isDisabledBtnInc}
         />
         <Button
           title={"reset"}
-          onClick={resetClick}
+          onClick={resetClickHandler}
           className={"Btn"}
           disabled={isDisabledBtnReset}
         />

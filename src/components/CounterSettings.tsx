@@ -6,17 +6,19 @@ import { Button } from "./Button";
 
 type CounterSettingsProps = {
   inputValueMax: number;
-  inputValueMin: number;
+  inputValueStart: number;
   onChangeInputValueMaxHandler: (e: ChangeEvent<HTMLInputElement>) => void;
-  onChangeInputValueMinHandler: (e: ChangeEvent<HTMLInputElement>) => void;
+  onChangeinputValueStartHandler: (e: ChangeEvent<HTMLInputElement>) => void;
+  setClickHandler: () => void;
 };
 
 export const CounterSettings = ({
   inputValueMax,
-  inputValueMin,
+  inputValueStart,
 
   onChangeInputValueMaxHandler,
-  onChangeInputValueMinHandler,
+  onChangeinputValueStartHandler,
+  setClickHandler
 }: CounterSettingsProps) => {
   return (
     <StyledCounterSettings>
@@ -35,13 +37,13 @@ export const CounterSettings = ({
           <input
             style={{ width: 80 }}
             type="number"
-            value={inputValueMin}
-            onChange={onChangeInputValueMinHandler}
+            value={inputValueStart}
+            onChange={onChangeinputValueStartHandler}
           />
         </StyledWrapper>
       </StyledSettings>
       <div className="Block">
-        <Button title="set" className="Btn" onClick={() => {}} />
+        <Button title="set" className="Btn" onClick={setClickHandler} />
       </div>
     </StyledCounterSettings>
   );

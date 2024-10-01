@@ -5,47 +5,52 @@ import { CounterSettings } from "./components/CounterSettings";
 
 function App() {
   const maxValue = 5;
-  const minValue = 0;
-  const [count, setCount] = useState(minValue);
+  const startValue = 0;
+  const [count, setCount] = useState(startValue);
 
   const [inputValueMax, setInputValueMax] = useState(maxValue);
-  const [inputValueMin, setInputValueMin] = useState(minValue);
+  const [inputValueStart, setinputValueStart] = useState(startValue);
 
   console.log('valueMax:', inputValueMax);
-  console.log('valueMin:', inputValueMin);
+  console.log('valueMin:', inputValueStart);
   
 
-  const incrementClick = () => {
+  const incrementClickHandler = () => {
     if (count < maxValue) {
       setCount(count + 1);
     }
   };
 
-  const resetClick = () => {
+  const resetClickHandler = () => {
     setCount(0);
   };
 
   const onChangeInputValueMaxHandler = (e: ChangeEvent<HTMLInputElement>) => {
     setInputValueMax(Number(e.currentTarget.value));
   };
-  const onChangeInputValueMinHandler = (e: ChangeEvent<HTMLInputElement>) => {
-    setInputValueMin(Number(e.currentTarget.value));
+  const onChangeinputValueStartHandler = (e: ChangeEvent<HTMLInputElement>) => {
+    setinputValueStart(Number(e.currentTarget.value));
   };
+
+  const setClickHandler = () => {
+    setCount(inputValueStart);
+  }
 
   return (
     <div className="App">
       <CounterSettings
         inputValueMax={inputValueMax}
-        inputValueMin={inputValueMin}
+        inputValueStart={inputValueStart}
         onChangeInputValueMaxHandler={onChangeInputValueMaxHandler}
-        onChangeInputValueMinHandler={onChangeInputValueMinHandler}
+        onChangeinputValueStartHandler={onChangeinputValueStartHandler}
+        setClickHandler={setClickHandler}
       />
       <Counter
         maxValue={maxValue}
-        minValue={minValue}
+        startValue={startValue}
         count={count}
-        incrementClick={incrementClick}
-        resetClick={resetClick}
+        incrementClickHandler={incrementClickHandler}
+        resetClickHandler={resetClickHandler}
       />
     </div>
   );
