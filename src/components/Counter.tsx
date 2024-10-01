@@ -7,7 +7,8 @@ type CounterProps = {
   inputValueMax: number;
   inputValueStart: number;
   count: number;
-
+  isSettingInProgress: boolean;
+  error: string;
   incrementClickHandler: () => void;
   resetClickHandler: () => void;
 };
@@ -17,14 +18,17 @@ export const Counter = ({
   inputValueStart,
   count,
   incrementClickHandler,
+  isSettingInProgress,
+  error,
   resetClickHandler,
 }: CounterProps) => {
 
   const isDisabledBtnInc = count >= inputValueMax;
   const isDisabledBtnReset = count === inputValueStart;
+
   return (
     <StyledCounter>
-      <Screen count={count} inputValueMax={inputValueMax} />
+      <Screen error={error} isSettingInProgress={isSettingInProgress} count={count} inputValueMax={inputValueMax} inputValueStart={inputValueStart} />
       <div className="Block">
         <Button
           title={"inc"}

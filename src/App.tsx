@@ -3,38 +3,63 @@ import "./App.css";
 import { Counter } from "./components/Counter";
 import { CounterSettings } from "./components/CounterSettings";
 
+export const isCounterSettingError = (maxValue: number, minValue: number) => {
+  if (maxValue <= minValue) {
+    return "incore must be greater than minValue";
+  }
+  if (minValue >= maxValue) {
+    return "incore must be less than maxValue";
+  }
+  return "";
+};
+
 function App() {
   const maxValue = 5;
   const startValue = 0;
+
   const [count, setCount] = useState(startValue);
 
-  const [inputValueMax, setInputValueMax] = useState(maxValue);
-  const [inputValueStart, setinputValueStart] = useState(startValue);
+  const [settingsState, setSettingsState] = useState({
+    maxValue: maxValue,
+    startValue: startValue,
+    isSettingInProgress: true,
+  });
 
-  console.log('valueMax:', inputValueMax);
-  console.log('valueMin:', inputValueStart);
-  
+  const [inputValueMax, setInputValueMax] = useState(maxValue);
+  const [inputValueStart, setInputValueStart] = useState(startValue);
 
   const incrementClickHandler = () => {
-    if (count < inputValueMax) {
+    if (count < settingsState.maxValue) {
       setCount(count + 1);
     }
   };
 
   const resetClickHandler = () => {
-    setCount(0);
+    setCount(settingsState.startValue);
   };
 
   const onChangeInputValueMaxHandler = (e: ChangeEvent<HTMLInputElement>) => {
-    setInputValueMax(Number(e.currentTarget.value));
+    setSettingsState((prev) => ({ ...prev, isSettingInProgress: true }));
   };
   const onChangeinputValueStartHandler = (e: ChangeEvent<HTMLInputElement>) => {
-    setinputValueStart(Number(e.currentTarget.value));
+    setSettingsState((prev) => ({ ...prev, isSettingInProgress: true }));
   };
 
-  const setClickHandler = () => {
+  const setClickHandler = (minValue: number, maxValue: number) => {
     setCount(inputValueStart);
-  }
+
+    setSettingsState((prev) => ({
+      ...prev,
+      isSettingInProgress: false,
+      maxValue: maxValue,
+      startValue: minValue,
+    }));
+  };
+
+  const showErrorInCounter = isCounterSettingError(
+    settingsState.maxValue,
+    settingsState.startValue
+  );
 
   return (
     <div className="App">
@@ -43,14 +68,18 @@ function App() {
         startValue={startValue}
         inputValueMax={inputValueMax}
         inputValueStart={inputValueStart}
-        onChangeInputValueMaxHandler={onChangeInputValueMaxHandler}
-        onChangeinputValueStartHandler={onChangeinputValueStartHandler}
+        setInputValueMax={setInputValueMax}
+        setInputValueStart={setInputValueStart}
+        onChangeInputValueMaxHandlerCallback={onChangeInputValueMaxHandler}
+        onChangeinputValueStartHandlerCallback={onChangeinputValueStartHandler}
         setClickHandler={setClickHandler}
       />
       <Counter
-        inputValueMax={inputValueMax}
-        inputValueStart={inputValueStart}
+        isSettingInProgress={settingsState.isSettingInProgress}
+        inputValueMax={settingsState.maxValue}
+        inputValueStart={settingsState.startValue}
         count={count}
+        error={showErrorInCounter}
         incrementClickHandler={incrementClickHandler}
         resetClickHandler={resetClickHandler}
       />
