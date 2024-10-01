@@ -3,20 +3,22 @@ import { Button } from "./Button";
 import { Screen } from "./Screen";
 import styled from "styled-components";
 
-export const Counter = () => {
-  const maxValue = 5;
-  const minValue = 0;
-  const [count, setCount] = useState(minValue);
+type CounterProps = {
+  maxValue: number;
+  minValue: number;
+  count: number;
 
-  const incrementClick = () => {
-    if (count < maxValue) {
-      setCount(count + 1);
-    }
-  };
+  incrementClick: () => void;
+  resetClick: () => void;
+};
 
-  const resetClick = () => {
-    setCount(0);
-  };
+export const Counter = ({
+  maxValue,
+  minValue,
+  count,
+  incrementClick,
+  resetClick,
+}: CounterProps) => {
 
   const isDisabledBtnInc = count >= maxValue;
   const isDisabledBtnReset = count === minValue;
